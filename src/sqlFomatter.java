@@ -66,13 +66,7 @@ public class sqlFomatter {
 		StringBuffer sBuffer = new StringBuffer();
 		String[] inputString = input.getText().split("\n");
 		for (int i = 1; i < inputString.length; i++) {
-			if (i == 1)
-				sBuffer.append("sb.append(\"" + inputString[i] + " \")\n");
-			else if (i == (inputString.length - 1)) {
-				sBuffer.append(".append(\"" + inputString[i] + " \");");
-			} else {
-				sBuffer.append(".append(\"" + inputString[i] + " \")\n");
-			}
+			sBuffer.append("sb.append(\"" + inputString[i] + " \");\n");
 		}
 		return sBuffer.toString();
 	}
@@ -80,7 +74,7 @@ public class sqlFomatter {
 	public static String argFomatter(JTextArea input, JTextField argsField) {
 		String inputString = input.getText();
 		String[] args = argsField.getText().split(",");
-		for (int i = 0; i < args.length - 1; i++) {
+		for (int i = 0; i < args.length; i++) {
 			if (inputString.indexOf("?") != -1) {
 				inputString = inputString.replaceFirst("\\?", "'" + args[i].substring(args[i].indexOf(":")+1) + "'");
 			}
